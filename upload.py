@@ -1,0 +1,57 @@
+'''
+PyFBUploader is a Python script for uploading Photos using the Facebook Platform
+PyFBUploader is copyright 2008 Eric Stein
+
+PyFBUploader is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2, or (at your option)
+any later version.
+
+Bash is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
+License for more details.  The GPL version 2 is included as LICENSE.
+'''
+
+import facebook
+import interact
+import session
+import sys
+
+if __name__ == '__main__' :
+	i = interact.Interact()
+
+	# create fb connection
+	fb = facebook.Facebook('564a94a584998894e3818cddd68375ff', '1296c50a5b85a8bd3c82d7d8435b1be5')
+	fb.auth.createToken()
+
+	s = session.getsession()
+
+	if s == None :
+		# get a session
+		fb.login()
+		s = fb.auth.getSession()
+		session.setsession(s)
+	else :
+		# load previous session
+		fb.secret = s[u'secret']
+		fb.session_key = s[u'session_key']
+		fb.session_key_expires = 0
+
+	pp = fb.photos
+	albums = pp.getAlbums()
+
+	cdic = {}
+	adic = {}
+	a = 0
+	for ad in albums :
+		a = a + 1
+		aid = ad[u'aid']
+		name = ad[u'name']
+		adic[a] = aid
+		cdic[a] = name
+
+	c = i.choices_menu('pick an album', cdic)
+
+	aid = adic[c]
+	print "uploading to " + str(aid) + ": " + cdic[c]
