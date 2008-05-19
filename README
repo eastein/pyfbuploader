@@ -30,7 +30,7 @@ As of May 18 2008, there are no releases.  PyFBUploader is tested to work with r
 
 To get this version:
 
-	svn co -r 127 http://pyfacebook.googlecode.com/svn/trunk
+	svn co -r 127 http://pyfacebook.googlecode.com/svn/trunk pyfacebook
 
 == Copyrights & Licensing==
 
