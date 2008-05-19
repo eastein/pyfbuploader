@@ -23,6 +23,14 @@ where you will be required to log into facebook.  After the first run, PyFBUploa
 should be able to reuse its session.  The session is stored in ~/.pyfbuploader as
 a file.
 
+== Installation ==
+
+You can use PyFBUploader locally, but it's preferable to install it.  Installation is 
+very simple:
+
+	make
+	sudo make install
+
 == Dependencies ==
 
 PyFBUploader depends on only one library, PyFacebook (http://code.google.com/p/pyfacebook/).
