@@ -31,7 +31,7 @@ if __name__ == '__main__' :
 	# process arguments
 	a = sys.argv
 	if len(a) < 2 :
-		print 'lol failure'
+		print 'usage:\n\tfbupload 20080517_00{1,4,7}.jpg\n\tfbupload jims_wedding_*'
 		sys.exit(1)
 	
 	# list files to upload
