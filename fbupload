@@ -34,21 +34,23 @@ if __name__ == '__main__' :
 		print 'lol failure'
 		sys.exit(1)
 	
+	# list files to upload
 	print 'files:'
 	files = []
 	for i in range(1, len(a)) :
 		print '  ' + a[i] 
 		files.append(a[i])
 
-	# create fb connection
+	# create facebook platform connection
 	fb = facebook.Facebook('564a94a584998894e3818cddd68375ff', '1296c50a5b85a8bd3c82d7d8435b1be5')
 	fb.auth.createToken()
 
 	# attempt to load a saved session
 	s = session.getsession()
 
+	# check session
 	if s == None :
-		# get a session
+		# no existing session, get one
 		fb.login()
 		s = fb.auth.getSession()
 		session.setsession(s)
@@ -58,9 +60,11 @@ if __name__ == '__main__' :
 		fb.session_key = s[u'session_key']
 		fb.session_key_expires = 0
 
+	# create a photo proxy and load list of albums
 	pp = fb.photos
 	albums = pp.getAlbums()
 
+	# get user's choice of album
 	cdic = {}
 	adic = {}
 	a = 0
@@ -73,10 +77,11 @@ if __name__ == '__main__' :
 
 	print ''
 	c = ntr.choices_menu('pick an album', cdic)
-
 	aid = adic[c]
+
 	print "uploading to " + str(aid) + ": " + cdic[c]
 
+	# upload photos
 	for f in files :
 		print 'uploading: ' + f
 		pp.upload(f, aid)

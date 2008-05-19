@@ -1,0 +1,46 @@
+PyFBUploader README $Id$
+
+== About ==
+
+PyFBUploader is a Python script for uploading Photos using the Facebook Platform.
+It attempts to make it easy to upload photos to your facebook albums from the shell.
+It is compatible with Linux and probably any other POSIX compliant system.
+
+== Usage ==
+
+fbupload [list of files]
+
+A list of albums will be presented.  Choose an album by typing its number.
+
+You can use any shell file list expansion facilities that your shell supplies.
+
+For example
+	fbupload 20080517_00{1,4,7}.jpg
+	fbupload jims_wedding_*
+
+If it is your first time using the application, PyFBUploader will open a web browser
+where you will be required to log into facebook.  After the first run, PyFBUploader
+should be able to reuse its session.  The session is stored in ~/.pyfbuploader as
+a file.
+
+== Dependencies ==
+
+PyFBUploader depends on only one library, PyFacebook (http://code.google.com/p/pyfacebook/).
+As of May 18 2008, there are no releases.  PyFBUploader is tested to work with revision 127.
+
+To get this version:
+
+	svn co -r 127 http://pyfacebook.googlecode.com/svn/trunk
+
+== Copyrights & Licensing==
+
+PyFBUploader is copyright 2008 Eric Stein
+
+PyFBUploader is free software; you can redistribute it and/or modify it under the terms
+of the GNU General Public License as published by the Free Software Foundation; either
+version 2, or (at your option) any later version.
+
+Bash is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.  See the GNU General Public License for more details.  The GPL version 2 is
+included as LICENSE.
