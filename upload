@@ -20,12 +20,25 @@ import session
 import sys
 
 if __name__ == '__main__' :
-	i = interact.Interact()
+	ntr = interact.Interact()
+
+	# process arguments
+	a = sys.argv
+	if len(a) < 2 :
+		print 'lol failure'
+		sys.exit(1)
+	
+	print 'files:'
+	files = []
+	for i in range(1, len(a)) :
+		print '  ' + a[i] 
+		files.append(a[i])
 
 	# create fb connection
 	fb = facebook.Facebook('564a94a584998894e3818cddd68375ff', '1296c50a5b85a8bd3c82d7d8435b1be5')
 	fb.auth.createToken()
 
+	# attempt to load a saved session
 	s = session.getsession()
 
 	if s == None :
@@ -52,7 +65,12 @@ if __name__ == '__main__' :
 		adic[a] = aid
 		cdic[a] = name
 
-	c = i.choices_menu('pick an album', cdic)
+	print ''
+	c = ntr.choices_menu('pick an album', cdic)
 
 	aid = adic[c]
 	print "uploading to " + str(aid) + ": " + cdic[c]
+
+	for f in files :
+		print 'uploading: ' + f
+		pp.upload(f, aid)
