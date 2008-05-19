@@ -11,6 +11,8 @@ PyFBUploader is distributed in the hope that it will be useful, but WITHOUT
 ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
 License for more details.  The GPL version 2 is included as LICENSE.
+
+$Id$
 '''
 
 import os
