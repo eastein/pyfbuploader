@@ -19,11 +19,14 @@ libdir := $(prefix)/lib
 sharedir := $(prefix)/share
 libdir_ := $(libdir)/pyfbuploader
 
+fbupload.install: fbupload
+	sed -e "s^#SYSPATH#^sys.path += ['/usr/lib/pyfbuploader']^" fbupload > fbupload.install
+
 install: fbupload.install interact.py session.py
 	mkdir -m 755 -p \
 		$(bindir) \
 		$(libdir_)
-	install -m 755 fbupload $(bindir)
+	install -m 755 fbupload.install $(bindir)/fbupload
 	install -m 644 *.py $(libdir_)
 
 uninstall:
