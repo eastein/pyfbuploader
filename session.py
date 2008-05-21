@@ -17,6 +17,7 @@ $Id$
 
 import pickle
 import os.path
+from os import chmod
 
 def getfile() :
 	return os.path.join(os.path.expanduser('~'), '.pyfbuploader')
@@ -31,6 +32,8 @@ def getsession() :
 		return None
 
 def setsession(s) :
-	f = open(getfile(), 'w')
+	fn = getfile()
+	f = open(fn, 'w')
+	chmod(fn, 0600)
 	pickle.dump(s, f)
 	f.close()
